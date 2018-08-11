@@ -5,7 +5,14 @@ service:
   bridges:
     - id: main
       host: '192.168.0.123'
+      type: v6
+      commands: commandsV6 # see https://github.com/mwittig/node-milight-promise
   lights:
-    - id: mylight
+    - id: mylight1
       bridge: main
       zone: 1
+      type: white
+    - id: mylight2
+      bridge: main
+      zone: 2
+      type: rgbw
