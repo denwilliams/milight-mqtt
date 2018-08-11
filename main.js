@@ -64,8 +64,10 @@ service.config.lights.forEach(l => {
     },
     raw(actions) {
       const cmdActions = actions.map(action => {
-        const fn = cmd[action];
-        return fn(zone);
+        const parts = action.split(':');
+        const fn = cmd[parts[0]];
+        if (parts.length === 1) return fn(zone);
+        return fn(zone, parts[1]);
       });
       console.log(`Raw ${l.id} ${actions}`);
       bridge.sendCommands(...cmdActions);
